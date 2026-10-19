@@ -38,7 +38,114 @@
             href="styles.css"
         />
     </head>
-    <body class="body">
-        Hello world
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__logo">
+                    <h1>Typing Speed Test</h1>
+                </div>
+                <div class="header__record-wrapper">
+                    <div class="header__record-icon">
+                        <img
+                            src="/assets/images/trophy.svg"
+                            alt=""
+                        />
+                    </div>
+                    <p class="header__record-text">
+                        Best score: <span>92 wpm</span>
+                    </p>
+                </div>
+            </header>
+            <main>
+                <nav class="nav-bar">
+                    <ul class="stats">
+                        <li
+                            cmp-wpm
+                            class="stats__item"
+                        >
+                            WPM:
+                            <span
+                                cmp-current-wpm
+                                class="stats__accent"
+                                >40</span
+                            >
+                        </li>
+                        <li
+                            cmp-accuracy
+                            class="stats__item"
+                        >
+                            Accuracy: 
+                            <span
+                                cmp-current-accuracy
+                                class="stats__accent"
+                                >94%</span
+                        </li>
+                        <li
+                            cmp-time
+                            class="stats__item"
+                        >
+                            Time: 
+                            <span
+                                cmp-current-time
+                                class="stats__accent"
+                                >0:46</span
+                        </li>
+                    </ul>
+
+                    <ul class="difficulty">
+                        Difficulty:
+                        <li>
+                            <button data-level="easy" class='switch'>
+                                Easy
+                            </button>
+                        </li>
+                        <li>
+                            <button data-level="medium" class='switch'>
+                                Medium
+                            </button>
+                        </li>
+                        <li>
+                            <button data-level="hard" class='switch'>
+                                Hard
+                            </button>
+                        </li>
+                    </ul>
+
+                    <ul class="duration">
+                        Duration:
+                        <li>
+                            <button data-duration="1" class='switch'>
+                                1 min
+                            </button>
+                        </li>
+                        <li>
+                            <button data-duration="3" class='switch'>
+                                3 min
+                            </button>
+                        </li>
+                        <li>
+                            <button data-duration="5" class='switch'>
+                                5 min
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <article class="running-line">
+                    <p>
+                        The archaeological expedition unearthed artifacts that
+                        complicated prevailing theories about Bronze Age trade
+                        networks. Obsidian from Anatolia, lapis lazuli from
+                        Afghanistan, and amber from the Baltic—all discovered in
+                        a single Mycenaean tomb—suggested commercial connections
+                        far more extensive than previously hypothesized. "We've
+                        underestimated ancient peoples' navigational
+                        capabilities and their appetite for luxury goods," the
+                        lead researcher observed. "Globalization isn't as modern
+                        as we assume."
+                    </p>
+                </article>
+            </main>
+        </div>
     </body>
 </html>
