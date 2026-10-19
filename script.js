@@ -89,21 +89,24 @@ typingArea.addEventListener('keydown', (e) => {
 
     e.preventDefault();
     e.stopPropagation();
+
+    let nextCharElement;
+
     if (char === 'Enter') {
-        const nextBlankChar = typingArea.querySelector('span.blank');
+        nextCharElement = typingArea.querySelector('span.blank');
         const nextFirstBlankCharInTheParagraph = typingArea.querySelector(
             'span.blank:first-child'
         );
 
         const newClass =
-            nextBlankChar === nextFirstBlankCharInTheParagraph
+            nextCharElement === nextFirstBlankCharInTheParagraph
                 ? 'success'
                 : 'danger';
-        nextBlankChar.classList.remove('blank');
-        nextBlankChar.classList.add(newClass);
+        nextCharElement.classList.remove('blank');
+        nextCharElement.classList.add(newClass);
 
     } else if (char !== 'Backspace') {
-        const nextCharElement = typingArea.querySelector('span.blank');
+        nextCharElement = typingArea.querySelector('span.blank');
 
         if (!nextCharElement) return;
 
@@ -120,13 +123,18 @@ typingArea.addEventListener('keydown', (e) => {
             const allNonBlank = typingArea.querySelectorAll('span:not(.blank)');
             prevSubling = allNonBlank[allNonBlank.length - 1];
         }
-        const nextCharElement = prevSubling;
+        nextCharElement = prevSubling;
 
         if (!nextCharElement) return;
 
         nextCharElement.classList.remove('success', 'danger');
         nextCharElement.classList.add('blank');
     }
+
+    const height = nextCharElement.offsetHeight;
+    const offsetTop = nextCharElement.offsetTop;
+    const offset = Math.floor(offsetTop / height);
+    typingArea.style.setProperty('--offset', offset);
 });
 
 difficultyButtons.forEach((btn) =>
