@@ -139,6 +139,13 @@ body {
     font-size: 1.25em;
 }
 
+[cmp-current-accuracy].success {
+    color: var(--color-success);
+}
+[cmp-current-accuracy].danger {
+    color: var(--color-danger);
+}
+
 .stats__item {
     display: flex;
     align-items: center;
@@ -183,20 +190,24 @@ body {
     color: var(--color-foreground-muted);
     user-select: none;
     outline: none;
+}
+.pause-banner {
+    position: absolute;
+    transform: translateY(calc(var(--offset) * 1lh));
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.25s ease-in-out;
+    top: 0;
+    inset-inline: 0;
+    height: 8lh;
+    pointer-events: none;
+}
 
-    &::after {
-        position: absolute;
-        transform: translateY(calc(var(--offset) * 1lh));
-        top: 0;
-        inset-inline: 0;
-        height: 8lh;
-        border-radius: 0.5rem;
-        border: 2px dashed var(--color-primary);
-    }
-
-    &:focus::after {
-        content: '';
-    }
+.typing-area:focus + .pause-banner {
+    opacity: 0;
 }
 
 .typing-area-wrapper {

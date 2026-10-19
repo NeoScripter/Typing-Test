@@ -132,11 +132,44 @@ typingArea.addEventListener('keydown', (e) => {
         nextCharElement.classList.add('blank');
     }
 
-    const height = parseInt(window.getComputedStyle(nextCharElement).lineHeight);
+    const height = parseInt(
+        window.getComputedStyle(nextCharElement).lineHeight
+    );
     const offsetTop = nextCharElement.offsetTop;
     const offset = Math.floor(offsetTop / height);
     typingArea.style.setProperty('--offset', offset);
+
+    refreshState();
+    updateStats();
 });
+
+function refreshState() {
+    const allNonBlank = typingArea.querySelectorAll('span:not(.blank)');
+    const words = [...allNonBlank].filter((char) => char.textContent === ' ');
+    const correct = [...allNonBlank].filter((char) =>
+        char.classList.contains('success')
+    );
+
+    const timePassed = totalDurationSeconds - timeLeftSeconds;
+    const wordsPerMinute =
+        timePassed === 0
+            ? words.length
+            : Math.round((words.length / timePassed) * 60);
+    speedWpm = wordsPerMinute;
+    const newAccuracy = Math.round((100 / allNonBlank.length) * correct.length);
+
+    if (newAccuracy > accuracy) {
+        accuracyElement.classList.remove('danger');
+        accuracyElement.classList.add('success');
+    } else if (newAccuracy < accuracy) {
+        accuracyElement.classList.add('danger');
+        accuracyElement.classList.remove('success');
+    } else {
+        accuracyElement.classList.remove('success', 'danger');
+    }
+
+    accuracy = newAccuracy;
+}
 
 difficultyButtons.forEach((btn) =>
     btn.addEventListener('click', () => {
