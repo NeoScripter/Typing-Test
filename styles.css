@@ -1,0 +1,23 @@
+body,
+html {
+    overflow-x: clip;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Sora';
+}
+
+:root {
+    --color-danger: #d64d5b;
+    --color-accent: #f4dc73;
+    --color-success: #4dd67b;
+    --color-primary: #177dff;
+    --color-primary-muted: ##4ca6ff;
+
+    --color-background: #121212;
+    --color-background-muted: #262626;
+    --color-foreground: #ffffff;
+    --color-foreground-muted: #949497;
+    --color-foreground-accent: #717178;
+}
