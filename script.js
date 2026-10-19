@@ -153,12 +153,18 @@ typingArea.addEventListener('keydown', (e) => {
             'span.blank:first-child'
         );
 
-        const newClass =
-            nextCharElement === nextFirstBlankCharInTheParagraph
-                ? 'success'
-                : 'danger';
-        nextCharElement.classList.remove('blank');
-        nextCharElement.classList.add(newClass);
+        if (nextCharElement !== nextFirstBlankCharInTheParagraph) {
+            nextCharElement.classList.remove('blank');
+            nextCharElement.classList.add('danger');
+        } else {
+            const currentOffset = Number(
+                typingArea.style.getPropertyValue('--offset')
+            );
+            typingArea.style.setProperty(
+                '--offset',
+                (currentOffset + 1).toString()
+            );
+        }
     } else if (char !== 'Backspace') {
         nextCharElement = typingArea.querySelector('span.blank');
 
@@ -279,8 +285,10 @@ applyTheme();
 
 const themeBtns = document.querySelectorAll('[data-theme-value]');
 
-themeBtns.forEach(btn => btn.addEventListener('click', () => {
-    currentTheme = btn.getAttribute('data-theme-value');
+themeBtns.forEach((btn) =>
+    btn.addEventListener('click', () => {
+        currentTheme = btn.getAttribute('data-theme-value');
 
-    applyTheme(currentTheme);
-}))
+        applyTheme(currentTheme);
+    })
+);

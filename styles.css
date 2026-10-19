@@ -252,9 +252,11 @@ body {
 /* } */
 .typing-area > p > span.success {
     color: var(--color-success);
+    border-bottom: 1px solid currentColor;
 }
 .typing-area > p > span.danger {
     color: var(--color-danger);
+    border-bottom: 1px solid currentColor;
 }
 
 .footer {
