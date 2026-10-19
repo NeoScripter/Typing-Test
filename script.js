@@ -103,6 +103,7 @@ async function appendTextToTypingArea() {
     const data = await fetch('/data/data.json');
     const json = await data.json();
     const items = json[difficulty];
+    shuffle(items);
 
     const frag = document.createDocumentFragment();
 
@@ -292,3 +293,10 @@ themeBtns.forEach((btn) =>
         applyTheme(currentTheme);
     })
 );
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
