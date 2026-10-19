@@ -37,6 +37,7 @@
             rel="stylesheet"
             href="styles.css"
         />
+        <script src="script.js" defer></script>
     </head>
     <body>
         <div class="wrapper">
@@ -51,42 +52,36 @@
                             alt=""
                         />
                     </div>
-                    <p class="header__record-text">
-                        Best score: <span>92 wpm</span>
+                    <p>
+                        Best score: 
+                        <span class='header__record-highlight'>
+                            <span cmp-best-score>92</span>
+                        wpm</span>
                     </p>
                 </div>
             </header>
             <main>
                 <nav class="nav-bar">
                     <ul class="stats">
-                        <li
-                            cmp-wpm
-                            class="stats__item"
-                        >
+                        <li class="stats__item">
                             WPM:
                             <span
-                                cmp-current-wpm
+                                cmp-current-speed 
                                 class="stats__accent"
                                 >40</span
                             >
                         </li>
-                        <li
-                            cmp-accuracy
-                            class="stats__item"
-                        >
+                        <li class="stats__item">
                             Accuracy: 
                             <span
                                 cmp-current-accuracy
                                 class="stats__accent"
                                 >94%</span
                         </li>
-                        <li
-                            cmp-time
-                            class="stats__item"
-                        >
+                        <li class="stats__item">
                             Time: 
                             <span
-                                cmp-current-time
+                                cmp-time-left
                                 class="stats__accent"
                                 >0:46</span
                         </li>
@@ -95,17 +90,17 @@
                     <ul class="difficulty">
                         Difficulty:
                         <li>
-                            <button data-level="easy" class='switch'>
+                            <button data-difficulty="easy" class='switch'>
                                 Easy
                             </button>
                         </li>
                         <li>
-                            <button data-level="medium" class='switch'>
+                            <button data-difficulty="medium" class='switch active'>
                                 Medium
                             </button>
                         </li>
                         <li>
-                            <button data-level="hard" class='switch'>
+                            <button data-difficulty="hard" class='switch'>
                                 Hard
                             </button>
                         </li>
@@ -114,17 +109,17 @@
                     <ul class="duration">
                         Duration:
                         <li>
-                            <button data-duration="1" class='switch'>
+                            <button data-duration="60" class='switch active'>
                                 1 min
                             </button>
                         </li>
                         <li>
-                            <button data-duration="3" class='switch'>
+                            <button data-duration="180" class='switch'>
                                 3 min
                             </button>
                         </li>
                         <li>
-                            <button data-duration="5" class='switch'>
+                            <button data-duration="300" class='switch'>
                                 5 min
                             </button>
                         </li>
@@ -134,40 +129,13 @@
                 <article class="typing-area-wrapper">
                     <div cmp-typing-area class='typing-area'>
                     <p>
-                        The archaeological expedition unearthed artifacts that
-                        complicated prevailing theories about Bronze Age trade
-                        networks. Obsidian from Anatolia, lapis lazuli from
-                        Afghanistan, and amber from the Baltic—all discovered in
-                        a single Mycenaean tomb—suggested commercial connections
-                        far more extensive than previously hypothesized. "We've
-                        underestimated ancient peoples' navigational
-                        capabilities and their appetite for luxury goods," the
-                        lead researcher observed. "Globalization isn't as modern
-                        as we assume."
+                        The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized. "We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods," the lead researcher observed. "Globalization isn't as modern as we assume."
                     </p>
                     <p>
-                        The archaeological expedition unearthed artifacts that
-                        complicated prevailing theories about Bronze Age trade
-                        networks. Obsidian from Anatolia, lapis lazuli from
-                        Afghanistan, and amber from the Baltic—all discovered in
-                        a single Mycenaean tomb—suggested commercial connections
-                        far more extensive than previously hypothesized. "We've
-                        underestimated ancient peoples' navigational
-                        capabilities and their appetite for luxury goods," the
-                        lead researcher observed. "Globalization isn't as modern
-                        as we assume."
+                        The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized. "We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods," the lead researcher observed. "Globalization isn't as modern as we assume."
                     </p>
                     <p>
-                        The archaeological expedition unearthed artifacts that
-                        complicated prevailing theories about Bronze Age trade
-                        networks. Obsidian from Anatolia, lapis lazuli from
-                        Afghanistan, and amber from the Baltic—all discovered in
-                        a single Mycenaean tomb—suggested commercial connections
-                        far more extensive than previously hypothesized. "We've
-                        underestimated ancient peoples' navigational
-                        capabilities and their appetite for luxury goods," the
-                        lead researcher observed. "Globalization isn't as modern
-                        as we assume."
+                        The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized. "We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods," the lead researcher observed. "Globalization isn't as modern as we assume."
                     </p>
                     </div>
                 </article>

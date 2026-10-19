@@ -3,7 +3,7 @@
     --color-accent: #f4dc73;
     --color-success: #4dd67b;
     --color-primary: #177dff;
-    --color-primary-muted: ##4ca6ff;
+    --color-primary-muted: #4ca6ff;
 
     --color-background: #121212;
     --color-background-muted: #262626;
@@ -103,11 +103,9 @@ body {
     }
 }
 
-@scope (.header__record-text) {
-    span {
-        text-transform: uppercase;
-        color: var(--color-foreground);
-    }
+.header__record-highlight {
+    text-transform: uppercase;
+    color: var(--color-foreground);
 }
 
 .nav-bar {
@@ -130,6 +128,7 @@ body {
 
 .difficulty {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
 }
@@ -160,18 +159,20 @@ body {
         color 0.3s ease,
         background-color 0.3s ease;
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
         color: rgb(from var(--color-foreground) r g b / 0.75);
     }
 }
 
 .switch.active {
-    color: var(--color-primary);
+    color: var(--color-primary-muted);
 }
 
 .duration {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
@@ -179,7 +180,8 @@ body {
     font-size: 1.5rem;
     overflow-y: hidden;
     overflow-y: clip;
-    height: 10.1lh;
+    /* overflow-y: auto; */
+    height: 8.1lh;
 
     @media screen and (min-width: 768px) {
         font-size: 2rem;
@@ -208,7 +210,9 @@ body {
         color 0.3s ease,
         background-color 0.3s ease;
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
         background-color: rgb(from var(--color-foreground-muted) r g b / 0.5);
     }
 }
+
