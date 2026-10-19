@@ -256,3 +256,31 @@ durationButtons.forEach((btn) =>
 
 updateStats();
 resetTest();
+
+const THEME_KEY = 'theme';
+let currentTheme =
+    localStorage.getItem(THEME_KEY) ??
+    window.matchMedia('(prefers-color-scheme: dark)').matches ??
+    'light';
+
+function applyTheme() {
+    const root = document.documentElement;
+
+    localStorage.setItem(THEME_KEY, currentTheme);
+
+    if (currentTheme === 'dark') {
+        root.classList.add('dark');
+    } else {
+        root.classList.remove('dark');
+    }
+}
+
+applyTheme();
+
+const themeBtns = document.querySelectorAll('[data-theme-value]');
+
+themeBtns.forEach(btn => btn.addEventListener('click', () => {
+    currentTheme = btn.getAttribute('data-theme-value');
+
+    applyTheme(currentTheme);
+}))
