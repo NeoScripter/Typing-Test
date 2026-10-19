@@ -85,6 +85,8 @@ typingArea.addEventListener('keydown', (e) => {
     const isValid =
         char === 'Backspace' || char === 'Enter' || regex.test(char);
 
+    console.log(e.getModifierState('CapsLock'));
+
     if (!isValid) return;
 
     e.preventDefault();
@@ -104,7 +106,6 @@ typingArea.addEventListener('keydown', (e) => {
                 : 'danger';
         nextCharElement.classList.remove('blank');
         nextCharElement.classList.add(newClass);
-
     } else if (char !== 'Backspace') {
         nextCharElement = typingArea.querySelector('span.blank');
 
@@ -131,7 +132,7 @@ typingArea.addEventListener('keydown', (e) => {
         nextCharElement.classList.add('blank');
     }
 
-    const height = nextCharElement.offsetHeight;
+    const height = parseInt(window.getComputedStyle(nextCharElement).lineHeight);
     const offsetTop = nextCharElement.offsetTop;
     const offset = Math.floor(offsetTop / height);
     typingArea.style.setProperty('--offset', offset);
