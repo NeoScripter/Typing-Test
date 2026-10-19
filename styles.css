@@ -204,6 +204,15 @@ body {
     inset-inline: 0;
     height: 8lh;
     pointer-events: none;
+
+    & > span {
+        font-size: 1.5rem;
+        font-weight: 600;
+        background-color: rgb(from var(--color-foreground-muted) r g b / 0.25);
+        border-radius: 1rem;
+        padding-inline: 1em;
+        padding-block: 0.5em;
+    }
 }
 
 .typing-area:focus + .pause-banner {
@@ -237,6 +246,8 @@ body {
     margin-top: 1rem;
     padding-top: 2rem;
     display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-top: 1px solid rgb(from var(--color-foreground-muted) r g b / 0.5);
@@ -259,4 +270,22 @@ body {
     &:focus-visible {
         background-color: rgb(from var(--color-foreground-muted) r g b / 0.5);
     }
+}
+
+.toast {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    translate: -50% -150%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: rgb(from var(--color-foreground-muted) r g b / 0.25);
+    border-radius: 1rem;
+    padding-inline: 1em;
+    padding-block: 0.5em;
+    transition: translate 0.3s ease-in-out;
+}
+
+.toast.shown {
+    translate: -50% 0%;
 }

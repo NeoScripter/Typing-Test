@@ -16,6 +16,7 @@ const typingArea = document.querySelector('[cmp-typing-area]');
 
 const durationButtons = document.querySelectorAll('[data-duration]');
 const difficultyButtons = document.querySelectorAll('[data-difficulty]');
+const toastElement = document.querySelector('[cmp-toast]');
 
 function updateStats() {
     bestScoreElement.textContent = bestScore;
@@ -79,13 +80,19 @@ function getFirstBlackChar() {
     return char;
 }
 
-typingArea.addEventListener('keydown', (e) => {
+typingArea.addEventListener('keyup', (e) => {
     const char = e.key;
     const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\=\ ]$/;
     const isValid =
         char === 'Backspace' || char === 'Enter' || regex.test(char);
 
-    console.log(e.getModifierState('CapsLock'));
+    if (e.key === 'CapsLock') {
+        if (e.getModifierState('CapsLock')) {
+            toastElement.classList.add('shown');
+        } else {
+            toastElement.classList.remove('shown');
+        }
+    }
 
     if (!isValid) return;
 
@@ -170,6 +177,10 @@ function refreshState() {
 
     accuracy = newAccuracy;
 }
+
+// function handleTestEnd () {
+//
+// }
 
 difficultyButtons.forEach((btn) =>
     btn.addEventListener('click', () => {
