@@ -176,6 +176,13 @@ body {
     gap: 0.5rem;
 }
 
+.typing-area {
+    --offset: 0;
+    transition: transform 0.3s linear;
+    transform: translateY(calc(var(--offset) * -1lh));
+    color: var(--color-foreground-muted);
+}
+
 .typing-area-wrapper {
     font-size: 1.5rem;
     overflow-y: hidden;
@@ -186,6 +193,13 @@ body {
     @media screen and (min-width: 768px) {
         font-size: 2rem;
     }
+}
+
+.typing-area > p > span.success {
+    color: var(--color-success);
+}
+.typing-area > p > span.danger {
+    color: var(--color-danger);
 }
 
 .footer {
