@@ -1,11 +1,11 @@
-let bestScore = 10;
+let bestScore = Number(localStorage.getItem('bestScore') ?? '0');
 let difficulty = sessionStorage.getItem('difficulty') ?? 'medium';
 let speedWpm = 40;
 let accuracy = 100;
-let timeLeftSeconds = 56;
 let totalDurationSeconds = Number(
     sessionStorage.getItem('totalDuration') ?? 60
 );
+let timeLeftSeconds = totalDurationSeconds;
 
 const bestScoreElement = document.querySelector('[cmp-best-score]');
 const speedWpmElement = document.querySelector('[cmp-current-speed]');
@@ -18,6 +18,50 @@ const durationButtons = document.querySelectorAll('[data-duration]');
 const difficultyButtons = document.querySelectorAll('[data-difficulty]');
 const toastElement = document.querySelector('[cmp-toast]');
 
+const finalCharsElement = document.querySelector('[cmp-final-chars]');
+const finalAccuracyElement = document.querySelector('[cmp-final-accuracy]');
+const finalWpmElement = document.querySelector('[cmp-final-wpm]');
+const endTestElement = document.querySelector('[cmp-end-test]');
+
+let interval = null;
+
+function handleTestEnd() {
+    clearInterval(interval);
+    interval = null;
+    endTestElement.classList.remove('hidden');
+    finalWpmElement.textContent = speedWpm;
+    finalAccuracyElement.textContent = `${accuracy}%`;
+
+    if (bestScore < speedWpm) {
+        bestScore = speedWpm;
+        localStorage.setItem('bestScore', speedWpm.toString());
+    }
+
+    const allNonBlank = typingArea.querySelectorAll('span:not(.blank)');
+    finalCharsElement.textContent = allNonBlank.length;
+}
+
+startTestBtn.addEventListener('click', resetTest);
+
+function tick() {
+    if (timeLeftSeconds === 0) {
+        handleTestEnd();
+        return;
+    }
+    timeLeftSeconds--;
+    refreshState();
+    updateStats();
+}
+
+function startTimer() {
+    return setInterval(tick, 1000);
+}
+
+typingArea.addEventListener('focusout', () => {
+    clearInterval(interval);
+    interval = null;
+});
+
 function updateStats() {
     bestScoreElement.textContent = bestScore;
     speedWpmElement.textContent = speedWpm;
@@ -29,6 +73,8 @@ function updateStats() {
 }
 
 function resetTest() {
+    clearInterval(interval);
+    interval = null;
     [...durationButtons, ...difficultyButtons].forEach((btn) =>
         btn.classList.remove('active')
     );
@@ -50,6 +96,7 @@ function resetTest() {
     typingArea.innerHTML = '';
     typingArea.style.setProperty('--offset', '0');
     appendTextToTypingArea();
+    endTestElement.classList.add('hidden');
 }
 
 async function appendTextToTypingArea() {
@@ -74,18 +121,7 @@ async function appendTextToTypingArea() {
 }
 appendTextToTypingArea();
 
-function getFirstBlackChar() {
-    const char = typingArea.querySelector('span.blank');
-
-    return char;
-}
-
 typingArea.addEventListener('keyup', (e) => {
-    const char = e.key;
-    const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\=\ ]$/;
-    const isValid =
-        char === 'Backspace' || char === 'Enter' || regex.test(char);
-
     if (e.key === 'CapsLock') {
         if (e.getModifierState('CapsLock')) {
             toastElement.classList.add('shown');
@@ -93,12 +129,22 @@ typingArea.addEventListener('keyup', (e) => {
             toastElement.classList.remove('shown');
         }
     }
+});
+
+typingArea.addEventListener('keydown', (e) => {
+    const char = e.key;
+    const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\=\ ]$/;
+    const isValid =
+        char === 'Backspace' || char === 'Enter' || regex.test(char);
 
     if (!isValid) return;
 
     e.preventDefault();
     e.stopPropagation();
 
+    if (interval === null) {
+        interval = startTimer();
+    }
     let nextCharElement;
 
     if (char === 'Enter') {
@@ -146,6 +192,18 @@ typingArea.addEventListener('keyup', (e) => {
     const offset = Math.floor(offsetTop / height);
     typingArea.style.setProperty('--offset', offset);
 
+    const typingAreaHeight = parseInt(
+        window.getComputedStyle(typingArea).height
+    );
+
+    const linesLeftUntilTheBottom = Math.floor(
+        (typingAreaHeight - offsetTop) / height
+    );
+
+    if (linesLeftUntilTheBottom <= 8) {
+        appendTextToTypingArea();
+    }
+
     refreshState();
     updateStats();
 });
@@ -177,10 +235,6 @@ function refreshState() {
 
     accuracy = newAccuracy;
 }
-
-// function handleTestEnd () {
-//
-// }
 
 difficultyButtons.forEach((btn) =>
     btn.addEventListener('click', () => {

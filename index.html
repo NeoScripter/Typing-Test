@@ -127,7 +127,7 @@
                 </nav>
 
                 <article class="typing-area-wrapper">
-                    <div tabindex="1" cmp-typing-area class='typing-area' style="--offset: 0;">
+                    <div tabindex="0" cmp-typing-area class='typing-area' style="--offset: 0;">
                         <!-- <p> -->
                         <!--     The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks. Obsidian from Anatolia, lapis lazuli from Afghanistan, and amber from the Baltic—all discovered in a single Mycenaean tomb—suggested commercial connections far more extensive than previously hypothesized. "We've underestimated ancient peoples' navigational capabilities and their appetite for luxury goods," the lead researcher observed. "Globalization isn't as modern as we assume." -->
                         <!-- </p> -->
@@ -135,10 +135,30 @@
                     <span class='pause-banner'>
                         <span>paused</span>
                     </span>
+                    <div cmp-end-test class='end-test hidden'>
+                        <figure class='end-test__icon'>
+                            <img src="/assets/images/green-checkmark.svg" alt="">
+                        </figure>
+                        <h2 class='end-test__title'>Test Complete!</h2>
+                        <ul class='end-test__stats'>
+                            <li>
+                                WPM: 
+                                <span cmp-final-wpm class='end-test__stats__accent'>85</span>
+                            </li>
+                            <li>
+                                Accuracy: 
+                                <span cmp-final-accuracy class='end-test__stats__accent'>90%</span>
+                            </li>
+                            <li>
+                                Characters: 
+                                <span cmp-final-chars class='end-test__stats__accent'>1200</span>
+                            </li>
+                        </ul>
+                    </div>
                 </article>
 
                 <footer class='footer'>
-                    <button cmp-start-test-btn class='test-controls-btn'>Start Test</button>
+                    <button cmp-start-test-btn class='test-controls-btn'>Restart Test</button>
                 </footer>
             </main>
         </div>
