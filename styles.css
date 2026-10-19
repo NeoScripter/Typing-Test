@@ -26,6 +26,7 @@ html {
 
 button {
     color: inherit;
+    border: none;
     cursor: pointer;
     background-color: transparent;
 }
@@ -156,8 +157,12 @@ body {
     color: var(--color-foreground);
     border-radius: 0.25rem;
     transition:
-        color,
+        color 0.3s ease,
         background-color 0.3s ease;
+
+    &:hover, &:focus-visible {
+        color: rgb(from var(--color-foreground) r g b / 0.75);
+    }
 }
 
 .switch.active {
@@ -168,4 +173,42 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.typing-area-wrapper {
+    font-size: 1.5rem;
+    overflow-y: hidden;
+    overflow-y: clip;
+    height: 10.1lh;
+
+    @media screen and (min-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+.footer {
+    margin-top: 1rem;
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgb(from var(--color-foreground-muted) r g b / 0.5);
+}
+
+.test-controls-btn {
+    background-color: rgb(from var(--color-foreground-muted) r g b / 0.25);
+    border-radius: 0.5rem;
+    padding-inline: 1em;
+    padding-block: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+
+    &:hover, &:focus-visible {
+        background-color: rgb(from var(--color-foreground-muted) r g b / 0.5);
+    }
 }
