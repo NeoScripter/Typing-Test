@@ -181,20 +181,24 @@ body {
     transition: transform 0.3s linear;
     transform: translateY(calc(var(--offset) * -1lh));
     color: var(--color-foreground-muted);
+    user-select: none;
 }
 
 .typing-area-wrapper {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     overflow-y: hidden;
     overflow-y: clip;
     /* overflow-y: auto; */
     height: 8.1lh;
 
     @media screen and (min-width: 768px) {
-        font-size: 2rem;
+        font-size: 2.25rem;
     }
 }
 
+/* .typing-area > p > span { */
+/*     border: 1px solid red; */
+/* } */
 .typing-area > p > span.success {
     color: var(--color-success);
 }
