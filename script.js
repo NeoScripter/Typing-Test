@@ -171,7 +171,7 @@ typingArea.addEventListener('keydown', (e) => {
         nextCharElement = typingArea.querySelector('span.blank');
 
         handleIndentCase(nextCharElement);
-    } else if (char === 'Space') {
+    } else if (char === ' ') {
         nextCharElement = typingArea.querySelector('span.blank');
 
         if (!nextCharElement) return;
