@@ -132,6 +132,25 @@ typingArea.addEventListener('keyup', (e) => {
     }
 });
 
+function handleIndentCase(nextCharElement) {
+    const nextFirstBlankCharInTheParagraph = typingArea.querySelector(
+        'span.blank:first-child'
+    );
+
+    if (nextCharElement !== nextFirstBlankCharInTheParagraph) {
+        nextCharElement.classList.remove('blank');
+        nextCharElement.classList.add('danger');
+    } else {
+        const currentOffset = Number(
+            typingArea.style.getPropertyValue('--offset')
+        );
+        typingArea.style.setProperty(
+            '--offset',
+            (currentOffset + 1).toString()
+        );
+    }
+}
+
 typingArea.addEventListener('keydown', (e) => {
     const char = e.key;
     const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\?\=\ ]$/;
@@ -150,22 +169,20 @@ typingArea.addEventListener('keydown', (e) => {
 
     if (char === 'Enter') {
         nextCharElement = typingArea.querySelector('span.blank');
-        const nextFirstBlankCharInTheParagraph = typingArea.querySelector(
-            'span.blank:first-child'
-        );
 
-        if (nextCharElement !== nextFirstBlankCharInTheParagraph) {
+        handleIndentCase(nextCharElement);
+    } else if (char === 'Space') {
+        nextCharElement = typingArea.querySelector('span.blank');
+
+        if (!nextCharElement) return;
+
+        if (nextCharElement.textContent === ' ') {
             nextCharElement.classList.remove('blank');
-            nextCharElement.classList.add('danger');
-        } else {
-            const currentOffset = Number(
-                typingArea.style.getPropertyValue('--offset')
-            );
-            typingArea.style.setProperty(
-                '--offset',
-                (currentOffset + 1).toString()
-            );
+            nextCharElement.classList.add('success');
+            return;
         }
+
+        handleIndentCase(nextCharElement);
     } else if (char !== 'Backspace') {
         nextCharElement = typingArea.querySelector('span.blank');
 
