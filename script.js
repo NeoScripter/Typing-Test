@@ -134,7 +134,7 @@ typingArea.addEventListener('keyup', (e) => {
 
 typingArea.addEventListener('keydown', (e) => {
     const char = e.key;
-    const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\=\ ]$/;
+    const regex = /^[a-zA-Z0-9\]\[\'\"\.\/\;\:\,\(\)\!\?\=\ ]$/;
     const isValid =
         char === 'Backspace' || char === 'Enter' || regex.test(char);
 
