@@ -308,9 +308,11 @@ body {
     }
 }
 
-/* .typing-area > p > span { */
-/*     border: 1px solid red; */
-/* } */
+.typing-area > p > span {
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease;
+}
 .typing-area > p > span.success {
     color: var(--color-success);
     border-bottom: 1px solid currentColor;
