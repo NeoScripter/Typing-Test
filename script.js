@@ -234,7 +234,8 @@ typingArea.addEventListener('keydown', (e) => {
 
 function refreshState() {
     const allNonBlank = typingArea.querySelectorAll('span:not(.blank)');
-    const words = [...allNonBlank].filter((char) => char.textContent === ' ');
+    // const words = [...allNonBlank].filter((char) => char.textContent === ' ');
+    const words = Math.floor(allNonBlank.length / 5);
     const correct = [...allNonBlank].filter((char) =>
         char.classList.contains('success')
     );
@@ -242,8 +243,8 @@ function refreshState() {
     const timePassed = totalDurationSeconds - timeLeftSeconds;
     const wordsPerMinute =
         timePassed === 0
-            ? words.length
-            : Math.round((words.length / timePassed) * 60);
+            ? words
+            : Math.round((words / timePassed) * 60);
     speedWpm = wordsPerMinute;
     const newAccuracy = Math.round((100 / allNonBlank.length) * correct.length);
 
