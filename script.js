@@ -235,7 +235,7 @@ typingArea.addEventListener('keydown', (e) => {
 function refreshState() {
     const allNonBlank = typingArea.querySelectorAll('span:not(.blank)');
     // const words = [...allNonBlank].filter((char) => char.textContent === ' ');
-    const words = Math.floor(allNonBlank.length / 5);
+    const words = Math.floor(allNonBlank.length / 4.7);
     const correct = [...allNonBlank].filter((char) =>
         char.classList.contains('success')
     );
